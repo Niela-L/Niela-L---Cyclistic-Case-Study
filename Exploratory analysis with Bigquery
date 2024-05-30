@@ -1,0 +1,205 @@
+Exploratory analysis with Bigquery
+
+--count number of casuals and members in my cleaned dataset
+SELECT COUNT(*) AS nr_of_observations,
+member_casual
+FROM `2023_divvy_tripdata.clean_combined_data`
+GROUP BY member_casual; --2678621 members and 1398665 casuals
+
+--assess number of trips per month for casuals
+SELECT COUNT(*) AS nr_of_trips,
+month,
+member_casual
+FROM `2023_divvy_tripdata.clean_combined_data`
+WHERE member_casual = "casual"
+GROUP BY month, member_casual
+ORDER BY nr_of_trips DESC;
+
+--assess number of trips per month for members
+SELECT COUNT(*) AS nr_of_trips,
+month,
+member_casual
+FROM `2023_divvy_tripdata.clean_combined_data`
+WHERE member_casual = "member"
+GROUP BY month, member_casual
+ORDER BY nr_of_trips DESC;
+
+-- Determine average trip_length between casuals and members
+SELECT AVG(trip_length) as avg_trip_length,
+member_casual
+FROM `2023_divvy_tripdata.clean_combined_data`
+GROUP BY member_casual;
+
+-- Determine average trip_length between casuals and members, per month
+SELECT 
+member_casual,
+AVG(trip_length) as avg_trip_length,
+month
+FROM `2023_divvy_tripdata.clean_combined_data`
+GROUP BY month,
+member_casual
+ORDER BY
+avg_trip_length DESC,
+  CASE 
+     WHEN month = 'January' THEN 1
+    WHEN month = 'February' THEN 2
+    WHEN month = 'March' THEN 3
+    WHEN month = 'April' THEN 4
+    WHEN month = 'May' THEN 5
+    WHEN month = 'June' THEN 6
+    WHEN month = 'July' THEN 7
+    WHEN month = 'August' THEN 8
+    WHEN month = 'September' THEN 9
+    WHEN month = 'October' THEN 10
+    WHEN month = 'November' THEN 11
+    WHEN month = 'December' THEN 12
+  END, 
+  member_casual;
+
+  -- Find max trip_length for casuals and members troughout the year
+  SELECT 
+  member_casual,
+  month,
+  ROUND(MAX(trip_length), 2) AS max_trip_length,
+  FROM `2023_divvy_tripdata.clean_combined_data`
+  GROUP BY member_casual,
+  month
+  ORDER BY
+  member_casual,
+  max_trip_length DESC;
+
+  -- Find min trip_length for casuals and members troughout the year
+  SELECT 
+  member_casual,
+  month,
+  ROUND(MIN(trip_length), 2) AS min_trip_length,
+  FROM `2023_divvy_tripdata.clean_combined_data`
+  GROUP BY member_casual,
+  month
+  ORDER BY
+  member_casual,
+  min_trip_length ASC;
+
+  --Determine average trip_distance between casuals and members
+  SELECT
+  member_casual,
+  ROUND(AVG(trip_distance), 2) as avg_trip_distance
+  FROM `2023_divvy_tripdata.clean_combined_data`
+  GROUP BY member_casual
+  ORDER BY avg_trip_distance DESC;
+
+  -- Determine average trip_distance between casuals and members, per month
+SELECT 
+member_casual,
+ROUND(AVG(trip_distance), 2) as avg_trip_distance,
+month
+FROM `2023_divvy_tripdata.clean_combined_data`
+GROUP BY 
+member_casual,
+month
+ORDER BY
+member_casual,
+avg_trip_distance DESC;
+
+  -- Determine average trip_distance between casuals and members, per day of week
+SELECT 
+member_casual,
+ROUND(AVG(trip_distance), 2) as avg_trip_distance,
+day_of_week
+FROM `2023_divvy_tripdata.clean_combined_data`
+GROUP BY 
+member_casual,
+day_of_week
+ORDER BY
+member_casual,
+avg_trip_distance DESC;
+
+
+-- Find max trip_distance for casuals and members troughout the year
+  SELECT 
+  member_casual,
+  month,
+  ROUND(MAX(trip_distance), 2) AS max_trip_distance,
+  FROM `2023_divvy_tripdata.clean_combined_data`
+  GROUP BY member_casual,
+  month
+  ORDER BY
+  member_casual,
+  max_trip_distance DESC;
+
+  -- Find min trip_distance for casuals and members troughout the year
+  SELECT 
+  member_casual,
+  month,
+  ROUND(MIN(trip_distance), 2) AS min_trip_distance,
+  FROM `2023_divvy_tripdata.clean_combined_data`
+  GROUP BY member_casual,
+  month
+  ORDER BY
+  member_casual,
+  min_trip_distance ASC;
+
+
+-- Find day of week with most trips for casuals and members
+  SELECT
+  member_casual,
+  day_of_week,
+  COUNT(*) as nr_trips
+  FROM `2023_divvy_tripdata.clean_combined_data`
+  GROUP BY 
+  day_of_week,
+  member_casual
+  ORDER BY
+  member_casual,
+  nr_trips DESC,
+   CASE
+    WHEN day_of_week = 'Monday' THEN 1
+    WHEN day_of_week = 'Tuesday' THEN 2
+    WHEN day_of_week = 'Wednesday' THEN 3
+    WHEN day_of_week = 'Thursday' THEN 4
+    WHEN day_of_week = 'Friday' THEN 5
+    WHEN day_of_week = 'Saturday' THEN 6
+    WHEN day_of_week = 'Sunday' THEN 7
+    END;
+
+-- what time of day is most preferred for casuals and members?
+SELECT
+member_casual,
+EXTRACT(HOUR FROM started_at) AS hour,
+COUNT(*) AS nr_of_trips
+FROM `2023_divvy_tripdata.clean_combined_data`
+WHERE member_casual = "casual"
+GROUP BY
+member_casual,
+hour
+ORDER BY
+member_casual,
+nr_of_trips DESC,
+hour;
+
+SELECT
+member_casual,
+EXTRACT(HOUR FROM started_at) AS hour,
+COUNT(*) AS nr_of_trips
+FROM `2023_divvy_tripdata.clean_combined_data`
+WHERE member_casual = "member"
+GROUP BY
+member_casual,
+hour
+ORDER BY
+member_casual,
+nr_of_trips DESC,
+hour;
+
+--types of bikes members and casuals prefer
+SELECT
+member_casual,
+rideable_type,
+COUNT(*) AS count
+FROM `2023_divvy_tripdata.clean_combined_data`
+GROUP BY
+member_casual,
+rideable_type
+ORDER BY
+member_casual,
+count DESC;

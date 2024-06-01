@@ -1,6 +1,6 @@
-Data cleaning & transformation
+-----Data cleaning & transformation with Bigquery
 
-##Merge the 12 datasets corresponding to a specific month into one dataset
+-- Merge the 12 datasets corresponding to a specific month into one dataset
 CREATE TABLE IF NOT EXISTS `2023_divvy_tripdata.combined_data` AS (
   SELECT *
   FROM `2023_divvy_tripdata.202301-divvy-tripdata`
@@ -64,8 +64,8 @@ COUNT(*) - COUNT(end_lng) as end_lng,
 COUNT(*) - COUNT(member_casual) as member_casual
 FROM `2023_divvy_tripdata.combined_data`;
 
-The columns start_station_name (875716), start_station_id (875848), end_station_name (929202), end_station_id (929343), end_lat (6990) & end_lng (6990) have null values.
-I remove these rows later on during the data cleaning process.
+--The columns start_station_name (875716), start_station_id (875848), end_station_name (929202), end_station_id (929343), end_lat (6990) & end_lng (6990) have null values.
+--I remove these rows later on during the data cleaning process.
 
 
 -- Check for duplicate rows

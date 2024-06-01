@@ -21,29 +21,33 @@ Towards this goal, three main questions are asked:
 3. How can Cyclistic use digital media to influence casual riders to become members?
 
 # Prepare the data
-To answer the questions above, the Divvy datasets concerning Jan 2023 to Dec 2023 were used for further analysis. Each dataset was downloaded as a .csv file from [here](https://divvy-tripdata.s3.amazonaws.com/index.html). Cyclistic is a fictional company. These datasets were made for the purpose of this case study. The data has been made available by Motivate International Inc. under this [license](https://divvybikes.com/data-license-agreement). This is public data that you can use to explore
+To answer the questions above, the Divvy datasets concerning Jan 2023 to Dec 2023 were used for further analysis. Each dataset was downloaded as a .csv file from [here](https://divvy-tripdata.s3.amazonaws.com/index.html). Cyclistic is a fictional company. These datasets were made for the purpose of this case study. The data has been made available by Motivate International Inc. under this [license](https://divvybikes.com/data-license-agreement). This is public data that can be used to explore
 how different customer types are using Cyclistic bikes.
 
-The datasets were loaded into BigQuery for exploratory analysis and to be able to join all datasets into one dataframe that could then be used to produce data visualizations in Tableau. 
+The datasets were loaded into BigQuery to be merged into one dataset. The combined dataset was then cleaned, and an exploratory analysis was performed to assess for differences between casual riders and members.
 
-# Cleaning data + exploratory analysis in BigQuery (SQL) 
-At this stage, I confirmed that all 12 datasets had the same 13 columns. Then, I joined all datasets into one dataframe. I checked for missing values and for duplicate rows (0 duplicates rows). I decided to keep the rows with missing values as I could just not consider these when doing my analysis or visualization of the data. 
+# Data Cleaning & Trasnformation 
+At this stage, I confirmed that all 12 datasets had the same 13 columns. Then, I joined all datasets into one dataset. I checked for duplicate rows (0 duplicates rows), and for missing values (the columns start_station_name, start_station_id, end_station_name, end_station_id, end_lat & end_lng, had missing values). I decided to later in my data cleaning & transformation process to drop the rows with missing values. 
 
-I checked for datatype for each column and observed that the data types were correct.
+I checked for datatype for each column and observed that the data types were all correct.
 
-Next, a new column was created to display **trip length** (in minutes) to be able to assess differences between casual customers and members. I also created additional columns to contain the **month**, and the **day of the week** to be easier to make exploratory analysis regarding bike use throughout the year and week.
+Next, new columns were created to display **trip length** (=trip duration,in minutes) and trip_distance (using a built-in Bigquery function to calculate distance from the latitude and longitude coordinates; in meters). I also created additional columns to contain the **month**, and the **day of the week** to be easier assess for trends in bike usage throughout the year, and week.
 
-# Analysis
+The cleaned dataset was free of missing values & duplicates rows. Data types were correct and necessary columns were added. This dataset was ready for further analysis.
+
+# Exploratory Analysis
 At this stage, I analyzed the previously cleaned combined dataset to assess for differences in bike usage between casuals and members.
 
-I compared the average trip length, numbers of trips throughout the year and week, and the types of bikes used between casuals and members. This process showed key differences in how casuals and members used Cyclistic bikes differently.
+I compared the average trip length (min) & distance (m), number of trips throughout the year and week, and the types of bikes used between casuals and members. This process showed key differences in how casuals and members used Cyclistic bikes differently (shown in findings_summary).
 
-After this analysis, I saved my cleaned dataset as a .csv file.
+After this analysis, I saved my cleaned dataset as a .csv file to upload it to Tableau.
 
 # Visualization creation
-After an initial exploratory analysis in BigQuery, the cleaned combined dataset was loaded into Tableau. When doing this, I noticed that I had to separate the columns manually to ensure the correct structure of the data. I also noticed that some columns had the wrong data type.
+After an initial exploratory analysis in BigQuery, the combined dataset was loaded into Tableau. When doing this, I noticed that I had to separate the columns manually to ensure the correct structure of the data. I then attributed the correct data type to each column. 
 
-To be continued
+The images can be found in a separates folder names Images.
+
+
 
 
 

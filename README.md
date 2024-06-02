@@ -38,25 +38,21 @@ The cleaned dataset was free of missing values & duplicates rows. Data types wer
 # Exploratory Analysis
 At this stage, I analyzed the previously cleaned combined dataset to assess for differences in bike usage between casuals and members.
 
-I compared the average trip length (min) & distance (m), number of trips throughout the year and week, and the types of bikes used between casuals and members. This process showed key differences in how casuals and members used Cyclistic bikes differently (shown in findings_summary).
+I compared the average trip length (min) & distance (m), number of trips throughout the year, week, and day, and the types of bikes used between casuals and members. I also looked at geographic localizations most preferred by the different riders. This process showed key differences in how casuals and members used Cyclistic bikes differently.
 
 After this analysis, I saved my cleaned dataset as a .csv file to upload it to Tableau.
 
 # Visualization creation
 After an initial exploratory analysis in BigQuery, the combined dataset was loaded into Tableau. When doing this, I noticed that I had to separate the columns manually to ensure the correct structure of the data. I then attributed the correct data type to each column. 
 
-The images can be found in a separates folder names Images.
+The key findings can be found in [Tableau](https://public.tableau.com/shared/4ZT3T2DHX?:display_count=n&:origin=viz_share_link)
 
 
+# Top three recomendations based on key findings:
+1. **Seasonal campaigns**: Launch summer and/or weekend membership campaigns through email, to attract casual riders who may not want annual memberships
 
+2. Offer members **exclusive access** to Cyclistic bikes during peak hours (early morning and late afternoon)
 
+3. Offer membership **group discounts** to encourage group rides
 
-
-
-
-
-
-
-
-
-
+4. **Target preferred departure stations**: ensure bike availability for members at those stations. Most frequented departure stations could also provide a way to target specific places for the previously recommended marketing strategies

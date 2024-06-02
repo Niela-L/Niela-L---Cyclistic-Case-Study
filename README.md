@@ -21,13 +21,15 @@ Towards this goal, three main questions are asked:
 3. How can Cyclistic use digital media to influence casual riders to become members?
 
 # Prepare the data
-To answer the questions above, the Divvy datasets concerning Jan 2023 to Dec 2023 were used for further analysis. Each dataset was downloaded as a .csv file from [here](https://divvy-tripdata.s3.amazonaws.com/index.html). Cyclistic is a fictional company. These datasets were made for the purpose of this case study. The data has been made available by Motivate International Inc. under this [license](https://divvybikes.com/data-license-agreement). This is public data that can be used to explore
-how different customer types are using Cyclistic bikes.
+To answer the questions above, the Divvy datasets concerning Jan 2023 to Dec 2023 were used for further analysis. Each dataset was downloaded as a .csv file from [here](https://divvy-tripdata.s3.amazonaws.com/index.html). 
+
+Cyclistic is a fictional company. These datasets were made for the purpose of this case study. The data has been made available by Motivate International Inc. under this [license](https://divvybikes.com/data-license-agreement). This is public data that can be used to explore how different customer types are using Cyclistic bikes.
 
 The datasets were loaded into BigQuery to be merged into one dataset. The combined dataset was then cleaned, and an exploratory analysis was performed to assess for differences between casual riders and members.
 
 # Data Cleaning & Trasnformation 
-At this stage, I confirmed that all 12 datasets had the same 13 columns. Then, I joined all datasets into one dataset. I checked for duplicate rows (0 duplicates rows), and for missing values (the columns start_station_name, start_station_id, end_station_name, end_station_id, end_lat & end_lng, had missing values). I decided to later in my data cleaning & transformation process to drop the rows with missing values. 
+At this stage, I confirmed that all 12 datasets had the same 13 columns. Then, I joined all datasets into one dataset. I checked for duplicate rows (0 duplicates rows), and for missing values (the columns start_station_name, start_station_id, end_station_name, end_station_id, end_lat & end_lng, had missing values). 
+I decided to later in the data cleaning & transformation process to drop the rows with missing values. 
 
 I checked for datatype for each column and observed that the data types were all correct.
 

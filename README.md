@@ -43,7 +43,7 @@ Performed an exploratory analysis to compare bike usage between casual riders an
 
 
 ## Visualization creation
-Imported the cleaned dataset into Tableau, manually adjusting column structures, and setting the correct data types when needed. The visualizations highlight key findings, available at [Tableau] https://public.tableau.com/shared/4ZT3T2DHX?:display_count=n&:origin=viz_share_link)
+Imported the cleaned dataset into Tableau, manually adjusting column structures, and setting the correct data types when needed. The visualizations highlight key findings, available at [Tableau](https://public.tableau.com/shared/4ZT3T2DHX?:display_count=n&:origin=viz_share_link).
 
 ## Recommendations
 Based on the key findings, the following strategies are recommended:
